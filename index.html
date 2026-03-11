@@ -285,19 +285,12 @@
     /* Torn bottom edge */
     .has-tear {
       border-bottom: none !important;
-      -webkit-mask-image: linear-gradient(to bottom,
-        black 0%, black calc(100% - 6px),
-        transparent calc(100% - 6px)),
-        url("data:image/svg+xml,%3Csvg width='100' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,3 Q5,0 10,3 Q15,6 20,3 Q25,0 30,3 Q35,6 40,3 Q45,0 50,3 Q55,6 60,3 Q65,0 70,3 Q75,6 80,3 Q85,0 90,3 Q95,6 100,3 L100,0 L0,0 Z' fill='black'/%3E%3C/svg%3E");
-      -webkit-mask-size: 100% calc(100% - 6px), 100% 6px;
-      -webkit-mask-position: top, bottom;
+      box-shadow: none !important;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L200,0 L200,194 Q195,190 190,194 Q185,198 180,194 Q175,190 170,194 Q165,198 160,194 Q155,190 150,194 Q145,198 140,194 Q135,190 130,194 Q125,198 120,194 Q115,190 110,194 Q105,198 100,194 Q95,190 90,194 Q85,198 80,194 Q75,190 70,194 Q65,198 60,194 Q55,190 50,194 Q45,198 40,194 Q35,190 30,194 Q25,198 20,194 Q15,190 10,194 Q5,198 0,194 Z' fill='black'/%3E%3C/svg%3E");
+      -webkit-mask-size: 100% 100%;
       -webkit-mask-repeat: no-repeat;
-      mask-image: linear-gradient(to bottom,
-        black 0%, black calc(100% - 6px),
-        transparent calc(100% - 6px)),
-        url("data:image/svg+xml,%3Csvg width='100' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,3 Q5,0 10,3 Q15,6 20,3 Q25,0 30,3 Q35,6 40,3 Q45,0 50,3 Q55,6 60,3 Q65,0 70,3 Q75,6 80,3 Q85,0 90,3 Q95,6 100,3 L100,0 L0,0 Z' fill='black'/%3E%3C/svg%3E");
-      mask-size: 100% calc(100% - 6px), 100% 6px;
-      mask-position: top, bottom;
+      mask-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L200,0 L200,194 Q195,190 190,194 Q185,198 180,194 Q175,190 170,194 Q165,198 160,194 Q155,190 150,194 Q145,198 140,194 Q135,190 130,194 Q125,198 120,194 Q115,190 110,194 Q105,198 100,194 Q95,190 90,194 Q85,198 80,194 Q75,190 70,194 Q65,198 60,194 Q55,190 50,194 Q45,198 40,194 Q35,190 30,194 Q25,198 20,194 Q15,190 10,194 Q5,198 0,194 Z' fill='black'/%3E%3C/svg%3E");
+      mask-size: 100% 100%;
       mask-repeat: no-repeat;
     }
 
@@ -397,13 +390,13 @@
     }
     .ticket-action-btn:hover { background: rgba(0,0,0,0.12); color: #5a5040; }
 
-    /* ── SPIKE — fixed bottom right, full height ── */
+    /* ── SPIKE — fixed bottom right, sized for max 8 tickets ── */
     .spike-area {
       position: fixed;
       bottom: 0;
       right: 0;
       width: 260px;
-      height: 100vh;
+      height: 50vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -411,7 +404,7 @@
       pointer-events: none;
       z-index: 50;
     }
-    .spike-area > * { pointer-events: all; }
+    .spike-area > * { pointer-events: auto; }
 
     .spike-header {
       position: absolute;
@@ -440,10 +433,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
+      pointer-events: auto;
       padding-bottom: 20px;
     }
 
-    /* Brushed metal base — perspective as if sitting on a table */
+    /* Brushed metal base — radial grain, perspective as if sitting on a table */
     .spike-base {
       width: 140px;
       height: 28px;
@@ -451,17 +445,17 @@
       position: relative;
       z-index: 2;
       transform: perspective(300px) rotateX(55deg);
-      /* Brushed metal — simurai style */
+      /* Radial brushed metal — simurai style */
       background-color: hsl(0,0%,72%);
       background-image:
-        repeating-linear-gradient(90deg,
-          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.08) 7.5%),
-        repeating-linear-gradient(90deg,
-          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 4%, hsla(0,0%,0%,.04) 4.5%),
-        repeating-linear-gradient(90deg,
-          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.12) 2.2%),
-        radial-gradient(ellipse at 50% 30%,
-          hsl(0,0%,88%) 0%, hsl(0,0%,78%) 40%, hsl(0,0%,65%) 100%);
+        radial-gradient(50% 0%, 8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        radial-gradient(50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+        radial-gradient(0% 50%, 50% 7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        radial-gradient(100% 50%, 50% 5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        repeating-radial-gradient(50% 50%, 100% 100%, hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 3%, hsla(0,0%,0%,.1) 3.5%),
+        repeating-radial-gradient(50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.1) 7.5%),
+        repeating-radial-gradient(50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+        radial-gradient(50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
       box-shadow:
         inset hsla(0,0%,15%,.8) 0 0px 0px 1px,
         inset hsla(0,0%,15%,.3) 0 -1px 3px 1px,
@@ -469,27 +463,6 @@
         inset hsla(0,0%,100%,.5) 0 2px 1px 3px,
         hsla(0,0%,0%,.5) 0 4px 12px 2px,
         hsla(0,0%,0%,.25) 0 8px 20px 4px;
-    }
-    /* Top ellipse face of the base */
-    .spike-base::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: -4px;
-      right: -4px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: hsl(0,0%,78%);
-      background-image:
-        repeating-linear-gradient(90deg,
-          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 5%, hsla(0,0%,100%,.1) 6.5%),
-        repeating-linear-gradient(90deg,
-          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 3%, hsla(0,0%,0%,.03) 3.5%),
-        radial-gradient(ellipse at 50% 40%,
-          hsl(0,0%,92%) 0%, hsl(0,0%,82%) 50%, hsl(0,0%,72%) 100%);
-      box-shadow:
-        inset hsla(0,0%,15%,.6) 0 0 0 1px,
-        inset hsla(0,0%,100%,.4) 0 -1px 2px 1px;
     }
 
     /* Metal needle — full height */
@@ -501,7 +474,7 @@
       transform: translateX(-50%);
       z-index: 1;
       border-radius: 2px;
-      height: calc(100vh - 100px);
+      height: calc(50vh - 80px);
       background-color: hsl(0,0%,75%);
       background-image:
         repeating-linear-gradient(180deg,
@@ -543,17 +516,19 @@
       border-radius: 1px;
     }
 
-    /* Spike drop zone — covers the top / tip area */
+    /* Spike drop zone — covers the tip area at the top */
     .spike-drop-zone {
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 160px;
       border: 2px dashed transparent;
       border-radius: 8px;
       transition: all 0.3s;
       z-index: 20;
+      pointer-events: auto;
     }
     .spike-drop-zone.drag-over {
       border-color: rgba(200, 170, 120, 0.4);
@@ -580,7 +555,7 @@
       cursor: pointer;
       margin-bottom: -2px;
       /* Perspective like sitting on the spike */
-      transform: perspective(400px) rotateX(12deg) rotate(var(--rot, 0deg));
+      transform: perspective(400px) rotateX(20deg) rotate(var(--rot, 0deg));
       transform-origin: center bottom;
     }
 
@@ -640,13 +615,13 @@
         hsla(0,0%,0%,.1) -1px 0 2px 0;
     }
 
-    .spiked-ticket:nth-child(even) { --rot: -1.5deg; }
-    .spiked-ticket:nth-child(odd)  { --rot: 1deg; }
-    .spiked-ticket:nth-child(3n)   { --rot: -0.5deg; }
-    .spiked-ticket:nth-child(4n)   { --rot: 2deg; }
+    .spiked-ticket:nth-child(even) { --rot: -2.5deg; }
+    .spiked-ticket:nth-child(odd)  { --rot: 1.5deg; }
+    .spiked-ticket:nth-child(3n)   { --rot: -1deg; }
+    .spiked-ticket:nth-child(4n)   { --rot: 3deg; }
 
     .spiked-ticket:hover {
-      transform: perspective(400px) rotateX(6deg) rotate(0deg) translateY(-4px) !important;
+      transform: perspective(400px) rotateX(10deg) rotate(0deg) translateY(-4px) !important;
       z-index: 10;
     }
 
@@ -738,15 +713,20 @@
       border-color: rgba(200, 170, 120, 0.4);
       background: rgba(200, 170, 120, 0.06);
     }
+    /* Override generic .drop-zone for the spike tip */
+    .spike-drop-zone.drop-zone {
+      position: absolute;
+      min-height: 0;
+    }
 
     /* ── Animations ── */
     @keyframes spikeSlam {
-      0% { transform: perspective(400px) rotateX(12deg) translateY(-100px) scale(1.08) rotate(var(--rot, 0deg)); opacity: 0; }
-      40% { opacity: 1; }
-      65% { transform: perspective(400px) rotateX(12deg) translateY(3px) scale(0.97) rotate(var(--rot, 0deg)); }
-      80% { transform: perspective(400px) rotateX(12deg) translateY(-2px) scale(1.01) rotate(var(--rot, 0deg)); }
-      90% { transform: perspective(400px) rotateX(12deg) translateY(1px) scale(0.995) rotate(var(--rot, 0deg)); }
-      100% { transform: perspective(400px) rotateX(12deg) translateY(0) scale(1) rotate(var(--rot, 0deg)); }
+      0% { transform: perspective(400px) rotateX(20deg) translateY(calc(-50vh + 60px)) scale(1.05) rotate(var(--rot, 0deg)); opacity: 0; }
+      15% { opacity: 1; }
+      70% { transform: perspective(400px) rotateX(20deg) translateY(4px) scale(0.97) rotate(var(--rot, 0deg)); }
+      82% { transform: perspective(400px) rotateX(20deg) translateY(-3px) scale(1.01) rotate(var(--rot, 0deg)); }
+      92% { transform: perspective(400px) rotateX(20deg) translateY(1px) scale(0.998) rotate(var(--rot, 0deg)); }
+      100% { transform: perspective(400px) rotateX(20deg) translateY(0) scale(1) rotate(var(--rot, 0deg)); }
     }
 
     @keyframes slideIn {
@@ -776,7 +756,7 @@
     }
 
     .ticket-enter { animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .spike-enter { animation: spikeSlam 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+    .spike-enter { animation: spikeSlam 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
     .spike-full .bin-body { animation: binPulse 1.5s infinite; }
 
     /* ── Modal ── */
@@ -1025,12 +1005,19 @@ function render(animateId = null, animationType = null) {
   }
   stack.innerHTML = doneItems.map(t => {
     const p = paperMap[t.id] || randomPaper();
+    const extraClass = (p.extra && p.extra !== 'has-stain') ? p.extra : '';
+    const stainHtml = p.extra === 'has-stain' ? `<div class="stain-ring" style="--stain-top:${p.stainTop}px;--stain-right:${p.stainRight}px;"></div>` : '';
+    const styleVars = `--tape-angle:${p.tapeAngle}deg; --crease-pos:${p.creasePos}%;`;
     return `
     <div class="spiked-ticket ${t.id === animateId && animationType === 'spike' ? 'spike-enter' : ''}"
          data-id="${t.id}">
       <div class="spike-through"></div>
-      <div class="spiked-paper ${p.style}">
-        ${escHtml(t.title)}
+      <div class="spiked-paper ${p.style} ${extraClass}" style="${styleVars}">
+        ${stainHtml}
+        <div class="ticket-title">${escHtml(t.title)}</div>
+        <div class="ticket-meta">
+          <span class="ticket-tag tag-${t.tag}">${t.tag}</span>
+        </div>
       </div>
       <div class="ticket-actions">
         <button class="ticket-action-btn" onclick="moveTicket('${t.id}', 'back')" title="Move back">&larr;</button>
