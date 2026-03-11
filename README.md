@@ -1,4 +1,4 @@
-# TaskSpike
+# Check Please
 
 A skeuomorphic kanban board inspired by restaurant kitchens. Tasks hang from metal ticket rails as receipts. Completed tickets get skewered onto a receipt spike.
 
