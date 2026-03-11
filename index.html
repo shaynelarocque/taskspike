@@ -36,19 +36,17 @@
 
     .board {
       display: flex;
-      gap: 24px;
+      flex-direction: column;
+      gap: 28px;
       padding: 10px 32px 40px;
-      max-width: 900px;
-      margin: 0 auto;
-      align-items: flex-start;
+      padding-right: 300px;
       perspective: 1200px;
     }
 
     /* ── Column base ── */
     .column {
-      flex: 1;
-      min-width: 0;
-      min-height: 400px;
+      width: 100%;
+      min-height: unset;
       position: relative;
     }
 
@@ -56,8 +54,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
-      margin-bottom: 8px;
+      padding: 4px 16px 8px;
+      margin-bottom: 0;
     }
 
     .column-header h2 {
@@ -80,32 +78,28 @@
       border: 1px dashed rgba(255,255,255,0.15);
       border-radius: 8px;
       color: #a89880;
-      padding: 10px;
-      width: 100%;
+      padding: 8px 14px;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      margin-top: 8px;
+      font-size: 0.8rem;
+      margin-top: 10px;
       transition: all 0.2s;
+      display: inline-block;
     }
     .add-btn:hover {
       background: rgba(255,255,255,0.1);
       color: #d4c4a8;
     }
 
-    /* ── RAIL COLUMNS ── */
+    /* ── RAIL COLUMNS — horizontal layout ── */
     .rail-column .rail-container {
       position: relative;
-      padding-top: 28px;
     }
 
     .rail {
-      position: absolute;
-      top: 0;
-      left: 16px;
-      right: 16px;
-      height: 12px;
-      border-radius: 6px;
+      position: relative;
+      height: 14px;
+      border-radius: 7px;
       z-index: 10;
       background-color: hsl(30, 5%, 78%);
       background-image:
@@ -129,10 +123,11 @@
     .rail::before, .rail::after {
       content: '';
       position: absolute;
-      top: -10px;
+      top: -9px;
       width: 22px;
       height: 32px;
       border-radius: 4px;
+      z-index: 11;
       background-color: hsl(30, 4%, 65%);
       background-image:
         repeating-linear-gradient(180deg,
@@ -150,47 +145,56 @@
         inset hsla(0,0%,100%,.5) 0 2px 1px 4px,
         hsla(0,0%,0%,.4) 0 2px 5px 1px;
     }
-    .rail::before { left: 20px; }
-    .rail::after { right: 20px; }
+    .rail::before { left: 8px; }
+    .rail::after { right: 8px; }
 
+    /* Tickets hang horizontally from the rail */
     .rail-column .ticket-list {
       display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding: 0 8px;
+      flex-direction: row;
+      gap: 10px;
+      padding: 12px 8px 8px;
       position: relative;
       z-index: 5;
+      overflow: hidden;
+      align-items: flex-start;
     }
 
     .ticket {
+      flex: 1 1 0;
+      min-width: 0;
       position: relative;
       cursor: grab;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, opacity 0.3s;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
     }
     .ticket:active { cursor: grabbing; }
-    .ticket.dragging { opacity: 0.5; transform: scale(0.96); }
+    /* Only dim the paper on drag, clip stays fully visible on the rail */
+    .ticket.dragging .ticket-paper { opacity: 0.35; transform: perspective(600px) rotateX(2deg) scale(0.96); }
+    .ticket.dragging .ticket-clip { opacity: 1; }
 
-    /* ── Receipt paper — all tickets look like thermal receipts ── */
+    /* ── Receipt paper — portrait receipts hanging from rail ── */
     .ticket-paper {
       border-radius: 2px;
-      padding: 16px 14px 14px;
-      margin: 6px 4px;
+      padding: 12px 10px 14px;
+      margin-top: 0;
       color: #3a3530;
       position: relative;
       transform-origin: top center;
       transform: perspective(600px) rotateX(2deg);
       overflow: hidden;
+      min-height: 100px;
       /* Base receipt paper */
       background: #faf6ee;
       background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='4' height='4' fill='%23f5f0e6'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ece7dd' opacity='0.4'/%3E%3C/svg%3E");
       box-shadow:
-        0 2px 8px rgba(0,0,0,0.15),
+        0 4px 12px rgba(0,0,0,0.2),
         0 1px 2px rgba(0,0,0,0.1),
         inset 0 0 0 1px rgba(0,0,0,0.04);
     }
 
     .ticket:hover .ticket-paper {
-      transform: perspective(600px) rotateX(0deg) translateY(-2px);
+      transform: perspective(600px) rotateX(0deg) translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(0,0,0,0.04);
     }
 
     /* Paper variation: slightly aged/yellowed */
@@ -297,13 +301,13 @@
     /* Clip holding ticket to rail */
     .ticket-clip {
       position: absolute;
-      top: -6px;
+      top: -20px;
       left: 50%;
       transform: translateX(-50%);
       width: 28px;
-      height: 16px;
+      height: 22px;
       border-radius: 4px 4px 1px 1px;
-      z-index: 2;
+      z-index: 12;
       background-color: hsl(30,5%,75%);
       background-image:
         repeating-linear-gradient(90deg,
@@ -331,8 +335,8 @@
 
     .ticket-title {
       font-family: 'Special Elite', cursive;
-      font-size: 0.95rem;
-      line-height: 1.4;
+      font-size: 0.82rem;
+      line-height: 1.35;
       color: #2a2520;
       margin-bottom: 8px;
       position: relative;
@@ -730,8 +734,8 @@
     }
 
     @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from { opacity: 0; transform: translateX(-16px) scaleX(0.9); }
+      to { opacity: 1; transform: translateX(0) scaleX(1); }
     }
 
     @keyframes binShake {
@@ -833,9 +837,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .board { flex-direction: column; padding: 10px 16px 40px; }
-      .column { min-width: unset; }
-      .spike-area { position: relative; width: 100%; height: auto; min-height: 400px; }
+      .board { padding: 10px 16px 40px; }
+      .spike-area { position: relative; width: 100%; height: auto; min-height: 300px; }
       .recycle-bin { position: relative; right: auto; bottom: auto; margin: 20px auto; }
     }
   </style>
@@ -912,20 +915,25 @@
 const STORAGE_KEY = 'taskspike_data';
 const RECYCLE_KEY = 'taskspike_recycled';
 const PAPER_KEY  = 'taskspike_papers';
-const MAX_SPIKE = 8;
+const MAX_SPIKE = 6;
+const MAX_RAIL  = 6;
 
 // Receipt-only paper styles + receipt embellishments
 const PAPER_STYLES = ['', 'paper-aged', 'paper-fresh', 'paper-crumpled', 'paper-creased', ''];
 const PAPER_EXTRAS = ['', '', 'has-fold', 'has-stain', 'has-tear', 'has-tape', ''];
 
 const DEFAULT_TICKETS = [
-  { id: 'd1', title: 'Set up CI/CD pipeline', tag: 'chore', status: 'todo' },
+  { id: 'd1', title: 'Fix login redirect loop', tag: 'bug', status: 'todo' },
   { id: 'd2', title: 'Design onboarding flow', tag: 'design', status: 'todo' },
-  { id: 'd3', title: 'Fix login redirect loop', tag: 'bug', status: 'todo' },
-  { id: 'd4', title: 'Add dark mode toggle', tag: 'feature', status: 'inprogress' },
+  { id: 'd3', title: 'Add dark mode toggle', tag: 'feature', status: 'todo' },
+  { id: 'd4', title: 'Write API docs', tag: 'chore', status: 'todo' },
   { id: 'd5', title: 'Migrate to new API schema', tag: 'chore', status: 'inprogress' },
-  { id: 'd6', title: 'Setup project scaffolding', tag: 'chore', status: 'done' },
-  { id: 'd7', title: 'Create color palette', tag: 'design', status: 'done' },
+  { id: 'd6', title: 'Build notification system', tag: 'feature', status: 'inprogress' },
+  { id: 'd7', title: 'Audit error handling', tag: 'bug', status: 'inprogress' },
+  { id: 'd8', title: 'Refactor auth module', tag: 'chore', status: 'inprogress' },
+  { id: 'd9', title: 'Setup project scaffolding', tag: 'chore', status: 'done' },
+  { id: 'd10', title: 'Create color palette', tag: 'design', status: 'done' },
+  { id: 'd11', title: 'Set up CI/CD pipeline', tag: 'chore', status: 'done' },
 ];
 
 let tickets = [];
@@ -969,6 +977,9 @@ function render(animateId = null, animationType = null) {
   ['todo', 'inprogress'].forEach(status => {
     const list = document.querySelector(`.ticket-list[data-status="${status}"]`);
     const items = tickets.filter(t => t.status === status);
+    // Dim add button when rail is full
+    const addBtn = document.querySelector(`.add-btn[data-status="${status}"]`);
+    if (addBtn) addBtn.style.opacity = items.length >= MAX_RAIL ? '0.3' : '1';
     list.innerHTML = items.map(t => {
       const p = paperMap[t.id] || randomPaper();
       const extraClass = (p.extra && p.extra !== 'has-stain') ? p.extra : '';
@@ -1061,12 +1072,18 @@ function moveTicket(id, direction) {
         recycleSpike(() => { t.status = 'done'; saveTickets(); render(id, 'spike'); });
         return;
       }
+    } else {
+      const railCount = tickets.filter(x => x.status === newStatus && x.id !== id).length;
+      if (railCount >= MAX_RAIL) return;
     }
     t.status = newStatus;
     saveTickets();
     render(id, t.status === 'done' ? 'spike' : 'enter');
   } else if (direction === 'back' && idx > 0) {
-    t.status = flow[idx - 1];
+    const newStatus = flow[idx - 1];
+    const railCount = tickets.filter(x => x.status === newStatus && x.id !== id).length;
+    if (newStatus !== 'done' && railCount >= MAX_RAIL) return;
+    t.status = newStatus;
     saveTickets();
     render(id, 'enter');
   }
@@ -1125,6 +1142,11 @@ function setupDragAndDrop() {
       draggedId = el.dataset.id;
       el.classList.add('dragging');
       e.dataTransfer.effectAllowed = 'move';
+      // Use just the paper as the drag ghost so the clip appears to stay on the rail
+      const paper = el.querySelector('.ticket-paper, .spiked-paper');
+      if (paper) {
+        e.dataTransfer.setDragImage(paper, paper.offsetWidth / 2, 24);
+      }
     });
     el.addEventListener('dragend', () => {
       el.classList.remove('dragging');
@@ -1156,6 +1178,10 @@ function setupDragAndDrop() {
             draggedId = null;
             return;
           }
+        } else {
+          // Rail columns — enforce max
+          const railCount = tickets.filter(x => x.status === status && x.id !== draggedId).length;
+          if (railCount >= MAX_RAIL) { draggedId = null; return; }
         }
         t.status = status;
         saveTickets();
@@ -1192,6 +1218,8 @@ function closeModal() { modal.classList.remove('open'); titleInput.value = ''; }
 function submitTicket() {
   const title = titleInput.value.trim();
   if (!title) return;
+  const railCount = tickets.filter(t => t.status === addToStatus).length;
+  if (addToStatus !== 'done' && railCount >= MAX_RAIL) { closeModal(); return; }
   const id = 'ticket_' + Date.now();
   paperMap[id] = randomPaper();
   tickets.push({ id, title, tag: tagSelect.value, status: addToStatus });
