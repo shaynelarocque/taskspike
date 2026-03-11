@@ -4,4 +4,4 @@ A skeuomorphic kanban board inspired by restaurant kitchens. Tasks hang from met
 
 Built as a single HTML file. Uses localStorage. Purely an experiment in CSS textures and drag-and-drop (And fun).
 
-**[Live demo](https://shaynelarocque.github.io/taskspike/)**
+[Live demo](https://shaynelarocque.github.io/checkplease/)
