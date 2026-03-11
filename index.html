@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskSpike</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,10 +20,10 @@
       color: #f5f0e8;
     }
 
+    /* ── Layout ── */
     header {
       text-align: center;
-      padding: 28px 20px 18px;
-      position: relative;
+      padding: 24px 20px 12px;
     }
 
     header h1 {
@@ -34,19 +34,11 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 0 40px rgba(200,150,80,0.15);
     }
 
-    header .subtitle {
-      font-size: 0.8rem;
-      color: #9a8b78;
-      margin-top: 4px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
     .board {
       display: flex;
       gap: 24px;
       padding: 10px 32px 40px;
-      max-width: 1300px;
+      max-width: 900px;
       margin: 0 auto;
       align-items: flex-start;
       perspective: 1200px;
@@ -56,7 +48,7 @@
     .column {
       flex: 1;
       min-width: 0;
-      min-height: 500px;
+      min-height: 400px;
       position: relative;
     }
 
@@ -101,7 +93,7 @@
       color: #d4c4a8;
     }
 
-    /* ── RAIL COLUMNS (To Do & In Progress) ── */
+    /* ── RAIL COLUMNS ── */
     .rail-column .rail-container {
       position: relative;
       padding-top: 28px;
@@ -116,9 +108,7 @@
       height: 12px;
       border-radius: 6px;
       z-index: 10;
-      /* Base metal color */
       background-color: hsl(30, 5%, 78%);
-      /* Brushed metal grain + vertical shading */
       background-image:
         repeating-linear-gradient(90deg,
           hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.08) 7.5%),
@@ -127,21 +117,16 @@
         repeating-linear-gradient(90deg,
           hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.12) 2.2%),
         linear-gradient(180deg,
-          hsl(30,5%,82%) 0%,
-          hsl(30,5%,90%) 40%,
-          hsl(30,5%,82%) 55%,
-          hsl(30,5%,72%) 100%);
-      /* Simurai-style layered inset shadows */
+          hsl(30,5%,82%) 0%, hsl(30,5%,90%) 40%, hsl(30,5%,82%) 55%, hsl(30,5%,72%) 100%);
       box-shadow:
-        inset hsla(0,0%,15%,1)   0  0px 0px 1px,  /* border */
-        inset hsla(0,0%,15%,.5)  0 -1px 3px 1px,   /* soft inner SD */
-        inset hsla(0,0%,0%,.2)   0 -1px 0px 3px,   /* bottom SD */
-        inset hsla(0,0%,100%,.6) 0  1px 1px 3px,   /* top HL */
-        hsla(0,0%,0%,.3)   0  2px 6px 1px,          /* outer SD */
-        hsla(0,0%,100%,.08) 0 -1px 3px 1px;         /* outer HL */
+        inset hsla(0,0%,15%,1)   0 0px 0px 1px,
+        inset hsla(0,0%,15%,.5)  0 -1px 3px 1px,
+        inset hsla(0,0%,0%,.2)   0 -1px 0px 3px,
+        inset hsla(0,0%,100%,.6) 0 1px 1px 3px,
+        hsla(0,0%,0%,.3) 0 2px 6px 1px,
+        hsla(0,0%,100%,.08) 0 -1px 3px 1px;
     }
 
-    /* Rail bracket mounts — heavier brushed metal */
     .rail::before, .rail::after {
       content: '';
       position: absolute;
@@ -158,21 +143,17 @@
         repeating-linear-gradient(180deg,
           hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.1) 2.2%),
         linear-gradient(90deg,
-          hsl(30,4%,60%) 0%,
-          hsl(30,4%,75%) 40%,
-          hsl(30,4%,65%) 60%,
-          hsl(30,4%,55%) 100%);
+          hsl(30,4%,60%) 0%, hsl(30,4%,75%) 40%, hsl(30,4%,65%) 60%, hsl(30,4%,55%) 100%);
       box-shadow:
-        inset hsla(0,0%,15%,1)   0  0px 0px 1px,
-        inset hsla(0,0%,15%,.4)  0 -1px 3px 1px,
-        inset hsla(0,0%,0%,.15)  0 -1px 0px 4px,
-        inset hsla(0,0%,100%,.5) 0  2px 1px 4px,
+        inset hsla(0,0%,15%,1) 0 0px 0px 1px,
+        inset hsla(0,0%,15%,.4) 0 -1px 3px 1px,
+        inset hsla(0,0%,0%,.15) 0 -1px 0px 4px,
+        inset hsla(0,0%,100%,.5) 0 2px 1px 4px,
         hsla(0,0%,0%,.4) 0 2px 5px 1px;
     }
     .rail::before { left: 20px; }
     .rail::after { right: 20px; }
 
-    /* Ticket on rail */
     .rail-column .ticket-list {
       display: flex;
       flex-direction: column;
@@ -187,40 +168,165 @@
       cursor: grab;
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, opacity 0.3s;
     }
-
     .ticket:active { cursor: grabbing; }
+    .ticket.dragging { opacity: 0.5; transform: scale(0.96); }
 
-    .ticket.dragging {
-      opacity: 0.5;
-      transform: scale(0.96);
-    }
+    /* ── Paper textures — randomly applied via JS ── */
 
-    /* Receipt paper styling */
+    /* Base receipt paper */
     .ticket-paper {
-      background: #faf6ee;
-      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='4' height='4' fill='%23f5f0e6'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ece7dd' opacity='0.4'/%3E%3C/svg%3E");
       border-radius: 3px;
       padding: 16px 14px 14px;
       margin: 6px 4px;
       color: #3a3530;
       position: relative;
-      box-shadow:
-        0 2px 8px rgba(0,0,0,0.15),
-        0 1px 2px rgba(0,0,0,0.1),
-        inset 0 0 0 1px rgba(0,0,0,0.04);
       transform-origin: top center;
       transform: perspective(600px) rotateX(2deg);
+      overflow: hidden;
     }
 
     .ticket:hover .ticket-paper {
       transform: perspective(600px) rotateX(0deg) translateY(-2px);
+    }
+
+    /* Paper style: white receipt (thermal paper) */
+    .paper-receipt {
+      background: #faf6ee;
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='4' height='4' fill='%23f5f0e6'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ece7dd' opacity='0.4'/%3E%3C/svg%3E");
       box-shadow:
-        0 6px 20px rgba(0,0,0,0.2),
-        0 2px 4px rgba(0,0,0,0.1),
+        0 2px 8px rgba(0,0,0,0.15),
+        0 1px 2px rgba(0,0,0,0.1),
         inset 0 0 0 1px rgba(0,0,0,0.04);
     }
 
-    /* Clip holding ticket to rail — small brushed metal piece */
+    /* Paper style: pink note */
+    .paper-pink {
+      background: linear-gradient(to bottom right, #c6939a, 20%, rgba(236,178,186,0)) , #ecb2ba;
+      box-shadow:
+        1px 1px 2px #c6939a,
+        0 2px 8px rgba(0,0,0,0.12),
+        inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .paper-pink .ticket-title { color: #4a2028; }
+    .paper-pink .ticket-tag { opacity: 0.8; }
+
+    /* Paper style: blue note */
+    .paper-blue {
+      background: linear-gradient(to bottom right, #c2d0ea, 20%, rgba(213,224,249,0)), #d5e0f9;
+      box-shadow:
+        3px 3px 2px #c2d0ea,
+        0 2px 8px rgba(0,0,0,0.12),
+        inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .paper-blue .ticket-title { color: #1a2840; }
+    .paper-blue .ticket-tag { opacity: 0.8; }
+
+    /* Paper style: yellow sticky */
+    .paper-yellow {
+      background: linear-gradient(to bottom right, #d4c060, 20%, rgba(240,220,100,0)), #f0dc64;
+      box-shadow:
+        1px 1px 2px #c4b050,
+        0 2px 8px rgba(0,0,0,0.12),
+        inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .paper-yellow .ticket-title { color: #3a3010; }
+    .paper-yellow .ticket-tag { opacity: 0.8; }
+
+    /* Paper style: green note */
+    .paper-green {
+      background: linear-gradient(to bottom right, #a8c8a0, 20%, rgba(190,220,185,0)), #bcdcb8;
+      box-shadow:
+        2px 2px 2px #98b890,
+        0 2px 8px rgba(0,0,0,0.12),
+        inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .paper-green .ticket-title { color: #1a3018; }
+    .paper-green .ticket-tag { opacity: 0.8; }
+
+    /* Paper style: lined paper */
+    .paper-lined {
+      background:
+        repeating-linear-gradient(180deg,
+          transparent, transparent 23px, #c8d8e8 23px, #c8d8e8 24px),
+        linear-gradient(90deg, transparent 39px, #e0a0a0 39px, #e0a0a0 40px, transparent 40px),
+        #f8f4ec;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.15),
+        0 1px 2px rgba(0,0,0,0.1),
+        inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .paper-lined { padding-left: 46px; }
+
+    /* Paper style: crumpled effect */
+    .paper-crumpled {
+      background: #f0ebe0;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.15),
+        0 1px 2px rgba(0,0,0,0.1),
+        inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .paper-crumpled::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(125deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.04) 32%, rgba(255,255,255,.06) 33%, rgba(0,0,0,0) 46%),
+        linear-gradient(205deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.03) 42%, rgba(255,255,255,.05) 43%, rgba(0,0,0,0) 56%),
+        linear-gradient(65deg, rgba(0,0,0,0) 20%, rgba(0,0,0,.04) 22%, rgba(255,255,255,.05) 23%, rgba(0,0,0,0) 50%),
+        linear-gradient(310deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.03) 57%, rgba(255,255,255,.04) 58%, rgba(0,0,0,0) 72%),
+        linear-gradient(170deg, rgba(0,0,0,0) 10%, rgba(0,0,0,.05) 12%, rgba(255,255,255,.06) 13%, rgba(0,0,0,0) 30%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Tape strip on some papers */
+    .has-tape::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%) rotate(var(--tape-angle, 0deg));
+      width: 60px;
+      height: 18px;
+      background: rgba(219, 216, 190, 0.5);
+      border-left: 1px dotted rgba(183,180,157,0.5);
+      border-right: 1px dotted rgba(183,180,157,0.5);
+      z-index: 3;
+    }
+
+    /* Dog-ear fold on some papers */
+    .has-fold::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 18px 18px;
+      border-color: transparent transparent #2c2520 transparent;
+      z-index: 3;
+      filter: drop-shadow(-1px -1px 1px rgba(0,0,0,0.1));
+    }
+    .has-fold {
+      border-bottom-right-radius: 0 !important;
+    }
+
+    /* Coffee stain ring — uses an overlay div injected by JS to avoid ::before conflicts */
+    .stain-ring {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid rgba(120,80,30,0.1);
+      background: radial-gradient(circle, rgba(120,80,30,0.03) 0%, transparent 70%);
+      top: var(--stain-top, 5px);
+      right: var(--stain-right, 5px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Clip holding ticket to rail */
     .ticket-clip {
       position: absolute;
       top: -6px;
@@ -239,9 +345,7 @@
         repeating-linear-gradient(90deg,
           hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
         linear-gradient(180deg,
-          hsl(30,5%,85%) 0%,
-          hsl(30,5%,78%) 50%,
-          hsl(30,5%,68%) 100%);
+          hsl(30,5%,85%) 0%, hsl(30,5%,78%) 50%, hsl(30,5%,68%) 100%);
       box-shadow:
         inset hsla(0,0%,15%,.8) 0 0px 0px 1px,
         inset hsla(0,0%,100%,.5) 0 1px 0px 1px,
@@ -265,6 +369,8 @@
       line-height: 1.4;
       color: #2a2520;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
     }
 
     .ticket-meta {
@@ -273,6 +379,8 @@
       justify-content: space-between;
       font-size: 0.7rem;
       color: #a09888;
+      position: relative;
+      z-index: 2;
     }
 
     .ticket-tag {
@@ -296,6 +404,7 @@
       gap: 2px;
       opacity: 0;
       transition: opacity 0.2s;
+      z-index: 5;
     }
     .ticket:hover .ticket-actions { opacity: 1; }
 
@@ -315,27 +424,59 @@
     }
     .ticket-action-btn:hover { background: rgba(0,0,0,0.12); color: #5a5040; }
 
-    /* ── SPIKE COLUMN (Complete) ── */
-    .spike-column .spike-container {
-      position: relative;
+    /* ── SPIKE — fixed bottom right ── */
+    .spike-area {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 260px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 20px;
-      min-height: 300px;
+      justify-content: flex-end;
+      pointer-events: none;
+      z-index: 50;
     }
 
-    /* The wooden base block — rich lacquered wood */
+    .spike-area > * { pointer-events: all; }
+
+    .spike-header {
+      position: absolute;
+      top: 20px;
+      font-family: 'Special Elite', cursive;
+      font-size: 1rem;
+      color: #d4c4a8;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .spike-header .count {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      color: #a89880;
+    }
+
+    .spike-assembly {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+
+    /* Wooden base */
     .spike-base {
       width: 130px;
       height: 44px;
       border-radius: 6px;
       position: relative;
       z-index: 2;
-      margin-top: auto;
-      /* Lacquered wood base */
       background-color: hsl(28, 35%, 35%);
-      /* Wood grain texture — layered for depth */
       background-image:
         repeating-linear-gradient(92deg,
           hsla(28,40%,20%,0) 0%, hsla(28,40%,20%,0) 7px, hsla(28,40%,20%,.08) 7px, hsla(28,40%,20%,.08) 8px),
@@ -344,32 +485,27 @@
         repeating-linear-gradient(90deg,
           hsla(28,40%,60%,0) 0%, hsla(28,40%,60%,0) 3px, hsla(28,40%,60%,.04) 3px, hsla(28,40%,60%,.04) 4px),
         linear-gradient(180deg,
-          hsl(28,30%,45%) 0%,
-          hsl(28,35%,38%) 30%,
-          hsl(28,35%,32%) 70%,
-          hsl(28,30%,28%) 100%);
-      /* Simurai-style layered shadows for 3D block feel */
+          hsl(28,30%,45%) 0%, hsl(28,35%,38%) 30%, hsl(28,35%,32%) 70%, hsl(28,30%,28%) 100%);
       box-shadow:
-        inset hsla(28,40%,15%,1)   0  0px 0px 1px,  /* border */
-        inset hsla(28,20%,10%,.5)  0 -1px 4px 2px,   /* soft inner SD */
-        inset hsla(28,20%,5%,.3)   0 -2px 0px 4px,   /* bottom SD */
-        inset hsla(28,30%,70%,.35) 0  2px 1px 4px,   /* top HL */
-        hsla(0,0%,0%,.5)   0  4px 12px 2px,           /* outer SD */
-        hsla(0,0%,0%,.3)   0  2px 4px  0px,           /* tight outer SD */
-        hsla(28,20%,60%,.1) 0 -2px 4px 1px;           /* outer HL */
+        inset hsla(28,40%,15%,1)   0  0px 0px 1px,
+        inset hsla(28,20%,10%,.5)  0 -1px 4px 2px,
+        inset hsla(28,20%,5%,.3)   0 -2px 0px 4px,
+        inset hsla(28,30%,70%,.35) 0  2px 1px 4px,
+        hsla(0,0%,0%,.5)   0  4px 12px 2px,
+        hsla(0,0%,0%,.3)   0  2px 4px  0px,
+        hsla(28,20%,60%,.1) 0 -2px 4px 1px;
     }
 
-    /* The metal spike needle — polished steel cylinder */
+    /* Metal needle */
     .spike-needle {
       width: 8px;
       position: absolute;
-      bottom: 30px;
+      bottom: 34px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
       border-radius: 2px;
       transition: height 0.3s ease;
-      /* Polished cylindrical steel gradient */
       background-color: hsl(0,0%,75%);
       background-image:
         repeating-linear-gradient(180deg,
@@ -379,35 +515,26 @@
         repeating-linear-gradient(180deg,
           hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1%, hsla(0,0%,100%,.08) 1.8%),
         linear-gradient(90deg,
-          hsl(0,0%,58%) 0%,
-          hsl(0,0%,82%) 25%,
-          hsl(0,0%,95%) 42%,
-          hsl(0,0%,85%) 55%,
-          hsl(0,0%,65%) 80%,
-          hsl(0,0%,55%) 100%);
+          hsl(0,0%,58%) 0%, hsl(0,0%,82%) 25%, hsl(0,0%,95%) 42%,
+          hsl(0,0%,85%) 55%, hsl(0,0%,65%) 80%, hsl(0,0%,55%) 100%);
       box-shadow:
         inset hsla(0,0%,100%,.4) 0 0 1px 0,
         hsla(0,0%,0%,.3) 2px 0 6px 0,
         hsla(0,0%,0%,.2) -1px 0 4px 0,
         hsla(0,0%,100%,.1) -2px 0 3px 0;
     }
-
-    /* Pointy tip — conical highlight */
     .spike-needle::before {
       content: '';
       position: absolute;
       top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      width: 0;
-      height: 0;
+      width: 0; height: 0;
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
       border-bottom: 16px solid hsl(0,0%,80%);
       filter: drop-shadow(0 -1px 3px rgba(0,0,0,0.4));
     }
-
-    /* Highlight stripe on tip */
     .spike-needle::after {
       content: '';
       position: absolute;
@@ -420,10 +547,24 @@
       border-radius: 1px;
     }
 
+    /* Spike drop zone */
+    .spike-drop-zone {
+      position: absolute;
+      inset: 60px 10px 70px 10px;
+      border: 2px dashed transparent;
+      border-radius: 8px;
+      transition: all 0.3s;
+      z-index: 20;
+    }
+    .spike-drop-zone.drag-over {
+      border-color: rgba(200, 170, 120, 0.4);
+      background: rgba(200, 170, 120, 0.06);
+    }
+
     /* Spiked receipts stack */
     .spike-stack {
       position: absolute;
-      bottom: 36px;
+      bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
@@ -438,17 +579,13 @@
       position: relative;
       transition: transform 0.3s, margin 0.3s;
       cursor: pointer;
-      margin-bottom: -6px;
+      margin-bottom: -4px;
     }
 
     .spiked-ticket .spiked-paper {
-      background: #faf6ee;
-      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='4' height='4' fill='%23f5f0e6'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ece7dd' opacity='0.4'/%3E%3C/svg%3E");
-      padding: 10px 12px;
+      padding: 12px 12px 10px;
+      padding-top: 18px;
       border-radius: 2px;
-      box-shadow:
-        0 1px 3px rgba(0,0,0,0.15),
-        0 0 0 1px rgba(0,0,0,0.04);
       position: relative;
       text-decoration: line-through;
       text-decoration-color: rgba(180,50,50,0.3);
@@ -459,7 +596,7 @@
     }
 
     /* Spike hole in spiked receipt */
-    .spiked-paper::before {
+    .spiked-paper::after {
       content: '';
       position: absolute;
       top: 6px;
@@ -470,9 +607,9 @@
       background: rgba(0,0,0,0.15);
       border-radius: 50%;
       box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+      z-index: 4;
     }
 
-    /* Slight rotation for stacked look */
     .spiked-ticket:nth-child(even) { transform: rotate(-1.5deg); }
     .spiked-ticket:nth-child(odd) { transform: rotate(1deg); }
     .spiked-ticket:nth-child(3n) { transform: rotate(-0.5deg); }
@@ -492,7 +629,78 @@
     }
     .spiked-ticket:hover .ticket-actions { opacity: 1; }
 
-    /* ── Drop zone indicators ── */
+    /* ── Recycling bin ── */
+    .recycle-bin {
+      position: fixed;
+      bottom: 20px;
+      right: 270px;
+      width: 80px;
+      height: 90px;
+      cursor: pointer;
+      z-index: 60;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .recycle-bin:hover { transform: scale(1.08); }
+    .recycle-bin.shake {
+      animation: binShake 0.5s ease;
+    }
+
+    .bin-body {
+      width: 60px;
+      height: 70px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #4a6848 0%, #5a8058 30%, #4a7048 60%, #3a5838 100%);
+      border-radius: 0 0 6px 6px;
+      position: relative;
+      box-shadow:
+        inset hsla(120,20%,15%,.8) 0 0 0 1px,
+        inset hsla(120,20%,60%,.2) 0 1px 0 1px,
+        hsla(0,0%,0%,.4) 0 3px 8px 1px;
+    }
+    /* Recycle arrows symbol */
+    .bin-body::after {
+      content: '♻';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .bin-lid {
+      width: 68px;
+      height: 12px;
+      margin: 0 auto 2px;
+      background: linear-gradient(180deg, #5a8058, #4a7048);
+      border-radius: 3px;
+      box-shadow:
+        inset hsla(120,20%,15%,.6) 0 0 0 1px,
+        inset hsla(120,20%,70%,.3) 0 1px 0 1px,
+        hsla(0,0%,0%,.3) 0 2px 4px 0;
+      transition: transform 0.3s;
+      transform-origin: bottom center;
+    }
+    .recycle-bin:hover .bin-lid,
+    .recycle-bin.open .bin-lid {
+      transform: rotate(-25deg) translateY(-4px);
+    }
+    .bin-handle {
+      width: 20px;
+      height: 8px;
+      margin: 0 auto;
+      border: 2px solid #4a7048;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+    }
+    .bin-count {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #7a9878;
+      margin-top: 4px;
+      font-family: 'Special Elite', cursive;
+    }
+
+    /* ── Drop zone for rail columns ── */
     .drop-zone {
       border: 2px dashed transparent;
       border-radius: 8px;
@@ -500,23 +708,7 @@
       transition: all 0.3s;
       position: relative;
     }
-
     .drop-zone.drag-over {
-      border-color: rgba(200, 170, 120, 0.4);
-      background: rgba(200, 170, 120, 0.06);
-    }
-
-    .spike-drop-zone {
-      min-height: 60px;
-      border: 2px dashed transparent;
-      border-radius: 8px;
-      transition: all 0.3s;
-      margin: 0 20px;
-      position: relative;
-      z-index: 20;
-    }
-
-    .spike-drop-zone.drag-over {
       border-color: rgba(200, 170, 120, 0.4);
       background: rgba(200, 170, 120, 0.06);
     }
@@ -531,25 +723,36 @@
       100% { transform: translateY(0) scale(1); }
     }
 
-    @keyframes paperDangle {
-      0% { transform: perspective(600px) rotateX(2deg) rotate(0deg); }
-      25% { transform: perspective(600px) rotateX(2deg) rotate(0.5deg); }
-      75% { transform: perspective(600px) rotateX(2deg) rotate(-0.5deg); }
-      100% { transform: perspective(600px) rotateX(2deg) rotate(0deg); }
-    }
-
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(-20px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .ticket-enter {
-      animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    @keyframes binShake {
+      0%, 100% { transform: rotate(0deg); }
+      15% { transform: rotate(-8deg); }
+      30% { transform: rotate(6deg); }
+      45% { transform: rotate(-4deg); }
+      60% { transform: rotate(2deg); }
+      75% { transform: rotate(-1deg); }
     }
 
-    .spike-enter {
-      animation: spikeSlam 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    @keyframes flyToBin {
+      0% { opacity: 1; }
+      70% { opacity: 0.6; }
+      100% { opacity: 0; transform: translate(var(--fly-x), var(--fly-y)) scale(0.2) rotate(var(--fly-rot)); }
     }
+
+    @keyframes binPulse {
+      0% { box-shadow: 0 0 0 0 rgba(90,128,88,0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(90,128,88,0); }
+      100% { box-shadow: 0 0 0 0 rgba(90,128,88,0); }
+    }
+
+    .ticket-enter { animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .spike-enter { animation: spikeSlam 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+
+    .spike-full .bin-body { animation: binPulse 1.5s infinite; }
 
     /* ── Modal ── */
     .modal-overlay {
@@ -565,10 +768,7 @@
       transition: opacity 0.2s;
       pointer-events: none;
     }
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
 
     .modal {
       background: #3a3530;
@@ -621,21 +821,17 @@
       font-weight: 500;
       transition: all 0.15s;
     }
-    .btn-cancel {
-      background: rgba(255,255,255,0.06);
-      color: #a89880;
-    }
+    .btn-cancel { background: rgba(255,255,255,0.06); color: #a89880; }
     .btn-cancel:hover { background: rgba(255,255,255,0.1); }
-    .btn-submit {
-      background: #8b7355;
-      color: #f5f0e8;
-    }
+    .btn-submit { background: #8b7355; color: #f5f0e8; }
     .btn-submit:hover { background: #a0845e; }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .board { flex-direction: column; padding: 10px 16px 40px; }
       .column { min-width: unset; }
+      .spike-area { position: relative; width: 100%; height: auto; min-height: 300px; }
+      .recycle-bin { position: relative; right: auto; bottom: auto; margin: 20px auto; }
     }
   </style>
 </head>
@@ -643,7 +839,6 @@
 
 <header>
   <h1>TaskSpike</h1>
-  <div class="subtitle">Kitchen-style task management</div>
 </header>
 
 <div class="board">
@@ -672,21 +867,27 @@
     </div>
     <button class="add-btn" data-status="inprogress">+ New ticket</button>
   </div>
+</div>
 
-  <!-- COMPLETE (SPIKE) -->
-  <div class="column spike-column" data-status="done">
-    <div class="column-header">
-      <h2>Done</h2>
-      <span class="count" data-count="done">0</span>
-    </div>
-    <div class="spike-drop-zone drop-zone" data-status="done">
-      <div class="spike-container">
-        <div class="spike-needle"></div>
-        <div class="spike-stack" data-status="done"></div>
-        <div class="spike-base"></div>
-      </div>
-    </div>
+<!-- Spike — fixed bottom right, full height -->
+<div class="spike-area" id="spike-area">
+  <div class="spike-header">
+    Done <span class="count" data-count="done">0</span>
   </div>
+  <div class="spike-drop-zone drop-zone" data-status="done"></div>
+  <div class="spike-assembly">
+    <div class="spike-needle"></div>
+    <div class="spike-stack" data-status="done"></div>
+    <div class="spike-base"></div>
+  </div>
+</div>
+
+<!-- Recycling bin -->
+<div class="recycle-bin" id="recycle-bin" title="Clear completed tickets">
+  <div class="bin-handle"></div>
+  <div class="bin-lid"></div>
+  <div class="bin-body"></div>
+  <div class="bin-count">0 recycled</div>
 </div>
 
 <!-- Add Ticket Modal -->
@@ -710,6 +911,12 @@
 <script>
 // ── State ──
 const STORAGE_KEY = 'taskspike_data';
+const RECYCLE_KEY = 'taskspike_recycled';
+const PAPER_KEY  = 'taskspike_papers';
+const MAX_SPIKE = 8;
+
+const PAPER_STYLES = ['paper-receipt', 'paper-pink', 'paper-blue', 'paper-yellow', 'paper-green', 'paper-lined', 'paper-crumpled'];
+const PAPER_EXTRAS = ['', 'has-tape', 'has-fold', 'has-stain', '', ''];
 
 const DEFAULT_TICKETS = [
   { id: 'd1', title: 'Set up CI/CD pipeline', tag: 'chore', status: 'todo' },
@@ -719,38 +926,77 @@ const DEFAULT_TICKETS = [
   { id: 'd5', title: 'Migrate to new API schema', tag: 'chore', status: 'inprogress' },
   { id: 'd6', title: 'Setup project scaffolding', tag: 'chore', status: 'done' },
   { id: 'd7', title: 'Create color palette', tag: 'design', status: 'done' },
-  { id: 'd8', title: 'Fix broken image uploads', tag: 'bug', status: 'done' },
 ];
 
 let tickets = [];
+let paperMap = {};  // id -> { style, extra, angle, stainTop, stainRight, tapeAngle }
+let recycledCount = 0;
 let draggedId = null;
 let addToStatus = 'todo';
 
 function loadTickets() {
   const saved = localStorage.getItem(STORAGE_KEY);
   tickets = saved ? JSON.parse(saved) : [...DEFAULT_TICKETS];
+  const savedPapers = localStorage.getItem(PAPER_KEY);
+  paperMap = savedPapers ? JSON.parse(savedPapers) : {};
+  recycledCount = parseInt(localStorage.getItem(RECYCLE_KEY) || '0');
+  // Ensure all tickets have paper styles
+  tickets.forEach(t => { if (!paperMap[t.id]) paperMap[t.id] = randomPaper(); });
+  savePapers();
 }
 
 function saveTickets() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tickets));
 }
 
+function savePapers() {
+  localStorage.setItem(PAPER_KEY, JSON.stringify(paperMap));
+}
+
+function saveRecycled() {
+  localStorage.setItem(RECYCLE_KEY, String(recycledCount));
+}
+
+// Seeded random per ticket ID
+function hashCode(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function randomPaper() {
+  return {
+    style: PAPER_STYLES[Math.floor(Math.random() * PAPER_STYLES.length)],
+    extra: PAPER_EXTRAS[Math.floor(Math.random() * PAPER_EXTRAS.length)],
+    angle: (Math.random() * 4 - 2).toFixed(1),
+    stainTop: Math.floor(Math.random() * 30 + 5),
+    stainRight: Math.floor(Math.random() * 30 + 5),
+    tapeAngle: (Math.random() * 10 - 5).toFixed(1),
+  };
+}
+
 // ── Rendering ──
 function render(animateId = null, animationType = null) {
   ['todo', 'inprogress', 'done'].forEach(status => {
     const items = tickets.filter(t => t.status === status);
-    document.querySelector(`[data-count="${status}"]`).textContent = items.length;
+    document.querySelectorAll(`[data-count="${status}"]`).forEach(el => el.textContent = items.length);
   });
 
   // Rail columns
   ['todo', 'inprogress'].forEach(status => {
     const list = document.querySelector(`.ticket-list[data-status="${status}"]`);
     const items = tickets.filter(t => t.status === status);
-    list.innerHTML = items.map(t => `
+    list.innerHTML = items.map(t => {
+      const p = paperMap[t.id] || randomPaper();
+      const extraClass = (p.extra && p.extra !== 'has-stain') ? p.extra : '';
+      const stainHtml = p.extra === 'has-stain' ? `<div class="stain-ring" style="--stain-top:${p.stainTop}px;--stain-right:${p.stainRight}px;"></div>` : '';
+      const styleVars = `--tape-angle:${p.tapeAngle}deg;`;
+      return `
       <div class="ticket ${t.id === animateId && animationType === 'enter' ? 'ticket-enter' : ''}"
            draggable="true" data-id="${t.id}">
         <div class="ticket-clip"></div>
-        <div class="ticket-paper">
+        <div class="ticket-paper ${p.style} ${extraClass}" style="${styleVars}">
+          ${stainHtml}
           <div class="ticket-actions">
             <button class="ticket-action-btn" onclick="moveTicket('${t.id}', 'forward')" title="Move forward">&rarr;</button>
             <button class="ticket-action-btn" onclick="deleteTicket('${t.id}')" title="Delete">&times;</button>
@@ -760,14 +1006,13 @@ function render(animateId = null, animationType = null) {
             <span class="ticket-tag tag-${t.tag}">${t.tag}</span>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   });
 
-  // Spike column — newly spiked ticket always on top
+  // Spike column
   const stack = document.querySelector('.spike-stack[data-status="done"]');
   let doneItems = tickets.filter(t => t.status === 'done');
-  // If we're animating a spike, move that ticket to the end so it renders on top
   if (animateId && animationType === 'spike') {
     const idx = doneItems.findIndex(t => t.id === animateId);
     if (idx > -1) {
@@ -775,24 +1020,40 @@ function render(animateId = null, animationType = null) {
       doneItems.push(item);
     }
   }
-  stack.innerHTML = doneItems.map(t => `
+  stack.innerHTML = doneItems.map(t => {
+    const p = paperMap[t.id] || randomPaper();
+    return `
     <div class="spiked-ticket ${t.id === animateId && animationType === 'spike' ? 'spike-enter' : ''}"
          data-id="${t.id}">
-      <div class="spiked-paper">
+      <div class="spiked-paper ${p.style}">
         ${escHtml(t.title)}
       </div>
       <div class="ticket-actions">
         <button class="ticket-action-btn" onclick="moveTicket('${t.id}', 'back')" title="Move back">&larr;</button>
         <button class="ticket-action-btn" onclick="deleteTicket('${t.id}')" title="Delete">&times;</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
-  // Update spike needle height based on stack
+  // Needle height
   const needle = document.querySelector('.spike-needle');
-  const baseHeight = 160;
-  const perTicket = 30;
+  const baseHeight = 60;
+  const perTicket = 36;
   needle.style.height = `${baseHeight + doneItems.length * perTicket}px`;
+
+  // Check if spike is full
+  const spikeArea = document.getElementById('spike-area');
+  const recycleBin = document.getElementById('recycle-bin');
+  if (doneItems.length >= MAX_SPIKE) {
+    spikeArea.classList.add('spike-full');
+    recycleBin.classList.add('spike-full');
+  } else {
+    spikeArea.classList.remove('spike-full');
+    recycleBin.classList.remove('spike-full');
+  }
+
+  // Recycled count
+  document.querySelector('.bin-count').textContent = `${recycledCount} recycled`;
 
   setupDragAndDrop();
 }
@@ -812,7 +1073,20 @@ function moveTicket(id, direction) {
   const idx = flow.indexOf(t.status);
 
   if (direction === 'forward' && idx < flow.length - 1) {
-    t.status = flow[idx + 1];
+    const newStatus = flow[idx + 1];
+    // If spike is full and trying to move to done, trigger recycle first
+    if (newStatus === 'done') {
+      const doneCount = tickets.filter(x => x.status === 'done').length;
+      if (doneCount >= MAX_SPIKE) {
+        recycleSpike(() => {
+          t.status = 'done';
+          saveTickets();
+          render(id, 'spike');
+        });
+        return;
+      }
+    }
+    t.status = newStatus;
     saveTickets();
     render(id, t.status === 'done' ? 'spike' : 'enter');
   } else if (direction === 'back' && idx > 0) {
@@ -824,8 +1098,65 @@ function moveTicket(id, direction) {
 
 function deleteTicket(id) {
   tickets = tickets.filter(t => t.id !== id);
+  delete paperMap[id];
   saveTickets();
+  savePapers();
   render();
+}
+
+// ── Recycle spike ──
+function recycleSpike(callback) {
+  const spikedEls = document.querySelectorAll('.spiked-ticket');
+  const bin = document.getElementById('recycle-bin');
+  const binRect = bin.getBoundingClientRect();
+
+  let animated = 0;
+  const total = spikedEls.length;
+
+  if (total === 0) {
+    if (callback) callback();
+    return;
+  }
+
+  bin.classList.add('open');
+
+  spikedEls.forEach((el, i) => {
+    const elRect = el.getBoundingClientRect();
+    const flyX = binRect.left + binRect.width/2 - (elRect.left + elRect.width/2);
+    const flyY = binRect.top + binRect.height/2 - (elRect.top + elRect.height/2);
+    const flyRot = (Math.random() * 360 - 180);
+
+    el.style.setProperty('--fly-x', flyX + 'px');
+    el.style.setProperty('--fly-y', flyY + 'px');
+    el.style.setProperty('--fly-rot', flyRot + 'deg');
+    el.style.zIndex = 100 + i;
+    el.style.position = 'relative';
+
+    setTimeout(() => {
+      el.style.animation = `flyToBin 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards`;
+
+      el.addEventListener('animationend', () => {
+        animated++;
+        if (animated === total) {
+          // Remove done tickets
+          const doneIds = tickets.filter(t => t.status === 'done').map(t => t.id);
+          recycledCount += doneIds.length;
+          tickets = tickets.filter(t => t.status !== 'done');
+          doneIds.forEach(id => delete paperMap[id]);
+          saveTickets();
+          savePapers();
+          saveRecycled();
+
+          bin.classList.remove('open');
+          bin.classList.add('shake');
+          setTimeout(() => bin.classList.remove('shake'), 600);
+
+          render();
+          if (callback) callback();
+        }
+      }, { once: true });
+    }, i * 80);
+  });
 }
 
 // ── Drag & Drop ──
@@ -841,8 +1172,6 @@ function setupDragAndDrop() {
       draggedId = null;
       document.querySelectorAll('.drag-over').forEach(z => z.classList.remove('drag-over'));
     });
-
-    // Make spiked tickets draggable too
     if (el.classList.contains('spiked-ticket')) {
       el.setAttribute('draggable', 'true');
     }
@@ -863,6 +1192,19 @@ function setupDragAndDrop() {
       const status = zone.dataset.status;
       const t = tickets.find(x => x.id === draggedId);
       if (t && t.status !== status) {
+        if (status === 'done') {
+          const doneCount = tickets.filter(x => x.status === 'done').length;
+          if (doneCount >= MAX_SPIKE) {
+            const capturedId = draggedId;
+            recycleSpike(() => {
+              t.status = 'done';
+              saveTickets();
+              render(capturedId, 'spike');
+            });
+            draggedId = null;
+            return;
+          }
+        }
         t.status = status;
         saveTickets();
         render(draggedId, status === 'done' ? 'spike' : 'enter');
@@ -871,6 +1213,14 @@ function setupDragAndDrop() {
     });
   });
 }
+
+// ── Recycle bin click ──
+document.getElementById('recycle-bin').addEventListener('click', () => {
+  const doneCount = tickets.filter(t => t.status === 'done').length;
+  if (doneCount > 0) {
+    recycleSpike();
+  }
+});
 
 // ── Modal ──
 const modal = document.getElementById('modal');
@@ -887,7 +1237,6 @@ document.querySelectorAll('.add-btn').forEach(btn => {
 
 document.getElementById('modal-cancel').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
 document.getElementById('modal-submit').addEventListener('click', submitTicket);
 titleInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitTicket(); });
 
@@ -901,8 +1250,10 @@ function submitTicket() {
   if (!title) return;
 
   const id = 'ticket_' + Date.now();
+  paperMap[id] = randomPaper();
   tickets.push({ id, title, tag: tagSelect.value, status: addToStatus });
   saveTickets();
+  savePapers();
   closeModal();
   render(id, addToStatus === 'done' ? 'spike' : 'enter');
 }
