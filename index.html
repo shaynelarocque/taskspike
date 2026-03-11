@@ -107,32 +107,67 @@
       padding-top: 28px;
     }
 
-    /* The metal rail */
+    /* The metal rail — simurai brushed metal */
     .rail {
       position: absolute;
       top: 0;
       left: 16px;
       right: 16px;
-      height: 10px;
-      background: linear-gradient(180deg, #c0b8a8 0%, #e8e0d0 20%, #a8a090 50%, #888078 80%, #706860 100%);
-      border-radius: 5px;
-      box-shadow:
-        0 2px 6px rgba(0,0,0,0.4),
-        0 1px 0 rgba(255,255,255,0.15) inset,
-        0 -1px 2px rgba(0,0,0,0.3) inset;
+      height: 12px;
+      border-radius: 6px;
       z-index: 10;
+      /* Base metal color */
+      background-color: hsl(30, 5%, 78%);
+      /* Brushed metal grain + vertical shading */
+      background-image:
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.08) 7.5%),
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 4%, hsla(0,0%,0%,.03) 4.5%),
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.12) 2.2%),
+        linear-gradient(180deg,
+          hsl(30,5%,82%) 0%,
+          hsl(30,5%,90%) 40%,
+          hsl(30,5%,82%) 55%,
+          hsl(30,5%,72%) 100%);
+      /* Simurai-style layered inset shadows */
+      box-shadow:
+        inset hsla(0,0%,15%,1)   0  0px 0px 1px,  /* border */
+        inset hsla(0,0%,15%,.5)  0 -1px 3px 1px,   /* soft inner SD */
+        inset hsla(0,0%,0%,.2)   0 -1px 0px 3px,   /* bottom SD */
+        inset hsla(0,0%,100%,.6) 0  1px 1px 3px,   /* top HL */
+        hsla(0,0%,0%,.3)   0  2px 6px 1px,          /* outer SD */
+        hsla(0,0%,100%,.08) 0 -1px 3px 1px;         /* outer HL */
     }
 
-    /* Rail bracket mounts */
+    /* Rail bracket mounts — heavier brushed metal */
     .rail::before, .rail::after {
       content: '';
       position: absolute;
-      top: -8px;
-      width: 20px;
-      height: 26px;
-      background: linear-gradient(180deg, #78706a, #908880, #68605a);
-      border-radius: 3px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+      top: -10px;
+      width: 22px;
+      height: 32px;
+      border-radius: 4px;
+      background-color: hsl(30, 4%, 65%);
+      background-image:
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.07) 7.5%),
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 4%, hsla(0,0%,0%,.04) 4.5%),
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.1) 2.2%),
+        linear-gradient(90deg,
+          hsl(30,4%,60%) 0%,
+          hsl(30,4%,75%) 40%,
+          hsl(30,4%,65%) 60%,
+          hsl(30,4%,55%) 100%);
+      box-shadow:
+        inset hsla(0,0%,15%,1)   0  0px 0px 1px,
+        inset hsla(0,0%,15%,.4)  0 -1px 3px 1px,
+        inset hsla(0,0%,0%,.15)  0 -1px 0px 4px,
+        inset hsla(0,0%,100%,.5) 0  2px 1px 4px,
+        hsla(0,0%,0%,.4) 0 2px 5px 1px;
     }
     .rail::before { left: 20px; }
     .rail::after { right: 20px; }
@@ -185,27 +220,42 @@
         inset 0 0 0 1px rgba(0,0,0,0.04);
     }
 
-    /* Clip holding ticket to rail */
+    /* Clip holding ticket to rail — small brushed metal piece */
     .ticket-clip {
       position: absolute;
-      top: -4px;
+      top: -6px;
       left: 50%;
       transform: translateX(-50%);
-      width: 24px;
-      height: 14px;
-      background: linear-gradient(180deg, #b0a898, #908878);
-      border-radius: 3px 3px 0 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      width: 28px;
+      height: 16px;
+      border-radius: 4px 4px 1px 1px;
       z-index: 2;
+      background-color: hsl(30,5%,75%);
+      background-image:
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.1) 7.5%),
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 3%, hsla(0,0%,0%,.04) 3.5%),
+        repeating-linear-gradient(90deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+        linear-gradient(180deg,
+          hsl(30,5%,85%) 0%,
+          hsl(30,5%,78%) 50%,
+          hsl(30,5%,68%) 100%);
+      box-shadow:
+        inset hsla(0,0%,15%,.8) 0 0px 0px 1px,
+        inset hsla(0,0%,100%,.5) 0 1px 0px 1px,
+        inset hsla(0,0%,0%,.2) 0 -1px 0px 1px,
+        hsla(0,0%,0%,.35) 0 2px 4px 0px;
     }
     .ticket-clip::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 4px;
-      right: 4px;
+      left: 3px;
+      right: 3px;
       height: 3px;
-      background: rgba(0,0,0,0.15);
+      background: linear-gradient(180deg, hsla(0,0%,0%,.08), hsla(0,0%,0%,.2));
       border-radius: 0 0 2px 2px;
     }
 
@@ -275,58 +325,99 @@
       min-height: 300px;
     }
 
-    /* The wooden base block */
+    /* The wooden base block — rich lacquered wood */
     .spike-base {
-      width: 120px;
-      height: 40px;
-      background: linear-gradient(180deg, #8b7355 0%, #6b5540 40%, #5a4535 100%);
+      width: 130px;
+      height: 44px;
       border-radius: 6px;
-      box-shadow:
-        0 4px 12px rgba(0,0,0,0.4),
-        0 2px 4px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        inset 0 -2px 4px rgba(0,0,0,0.2);
       position: relative;
       z-index: 2;
       margin-top: auto;
-      /* Wood grain texture */
+      /* Lacquered wood base */
+      background-color: hsl(28, 35%, 35%);
+      /* Wood grain texture — layered for depth */
       background-image:
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 8px,
-          rgba(0,0,0,0.03) 8px,
-          rgba(0,0,0,0.03) 9px
-        );
+        repeating-linear-gradient(92deg,
+          hsla(28,40%,20%,0) 0%, hsla(28,40%,20%,0) 7px, hsla(28,40%,20%,.08) 7px, hsla(28,40%,20%,.08) 8px),
+        repeating-linear-gradient(88deg,
+          hsla(28,30%,50%,0) 0%, hsla(28,30%,50%,0) 11px, hsla(28,30%,50%,.06) 11px, hsla(28,30%,50%,.06) 12px),
+        repeating-linear-gradient(90deg,
+          hsla(28,40%,60%,0) 0%, hsla(28,40%,60%,0) 3px, hsla(28,40%,60%,.04) 3px, hsla(28,40%,60%,.04) 4px),
+        linear-gradient(180deg,
+          hsl(28,30%,45%) 0%,
+          hsl(28,35%,38%) 30%,
+          hsl(28,35%,32%) 70%,
+          hsl(28,30%,28%) 100%);
+      /* Simurai-style layered shadows for 3D block feel */
+      box-shadow:
+        inset hsla(28,40%,15%,1)   0  0px 0px 1px,  /* border */
+        inset hsla(28,20%,10%,.5)  0 -1px 4px 2px,   /* soft inner SD */
+        inset hsla(28,20%,5%,.3)   0 -2px 0px 4px,   /* bottom SD */
+        inset hsla(28,30%,70%,.35) 0  2px 1px 4px,   /* top HL */
+        hsla(0,0%,0%,.5)   0  4px 12px 2px,           /* outer SD */
+        hsla(0,0%,0%,.3)   0  2px 4px  0px,           /* tight outer SD */
+        hsla(28,20%,60%,.1) 0 -2px 4px 1px;           /* outer HL */
     }
 
-    /* The metal spike needle */
+    /* The metal spike needle — polished steel cylinder */
     .spike-needle {
-      width: 6px;
-      background: linear-gradient(90deg, #a0a0a0, #e0e0e0 40%, #c8c8c8 60%, #808080);
+      width: 8px;
       position: absolute;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
-      border-radius: 1px;
-      box-shadow: 2px 0 6px rgba(0,0,0,0.3), -1px 0 3px rgba(0,0,0,0.15);
+      border-radius: 2px;
       transition: height 0.3s ease;
+      /* Polished cylindrical steel gradient */
+      background-color: hsl(0,0%,75%);
+      background-image:
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 5%, hsla(0,0%,100%,.06) 6%),
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,0%,0) 0%, hsla(0,0%,0%,0) 3%, hsla(0,0%,0%,.03) 3.5%),
+        repeating-linear-gradient(180deg,
+          hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1%, hsla(0,0%,100%,.08) 1.8%),
+        linear-gradient(90deg,
+          hsl(0,0%,58%) 0%,
+          hsl(0,0%,82%) 25%,
+          hsl(0,0%,95%) 42%,
+          hsl(0,0%,85%) 55%,
+          hsl(0,0%,65%) 80%,
+          hsl(0,0%,55%) 100%);
+      box-shadow:
+        inset hsla(0,0%,100%,.4) 0 0 1px 0,
+        hsla(0,0%,0%,.3) 2px 0 6px 0,
+        hsla(0,0%,0%,.2) -1px 0 4px 0,
+        hsla(0,0%,100%,.1) -2px 0 3px 0;
     }
 
-    /* Pointy tip */
+    /* Pointy tip — conical highlight */
     .spike-needle::before {
       content: '';
       position: absolute;
-      top: -12px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 14px solid #c0c0c0;
-      filter: drop-shadow(0 -1px 2px rgba(0,0,0,0.3));
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 16px solid hsl(0,0%,80%);
+      filter: drop-shadow(0 -1px 3px rgba(0,0,0,0.4));
+    }
+
+    /* Highlight stripe on tip */
+    .spike-needle::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 12px;
+      background: linear-gradient(180deg, hsla(0,0%,100%,.7), hsla(0,0%,100%,0));
+      border-radius: 1px;
     }
 
     /* Spiked receipts stack */
@@ -432,10 +523,12 @@
 
     /* ── Animations ── */
     @keyframes spikeSlam {
-      0% { transform: translateY(-80px) translateX(-50%) scale(1.1); opacity: 0.5; }
-      60% { transform: translateY(4px) translateX(-50%) scale(0.98); opacity: 1; }
-      80% { transform: translateY(-2px) translateX(-50%) scale(1.01); }
-      100% { transform: translateY(0) translateX(-50%) scale(1); }
+      0% { transform: translateY(-100px) scale(1.08); opacity: 0; }
+      40% { opacity: 1; }
+      65% { transform: translateY(3px) scale(0.97); }
+      80% { transform: translateY(-2px) scale(1.01); }
+      90% { transform: translateY(1px) scale(0.995); }
+      100% { transform: translateY(0) scale(1); }
     }
 
     @keyframes paperDangle {
@@ -455,7 +548,7 @@
     }
 
     .spike-enter {
-      animation: spikeSlam 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
+      animation: spikeSlam 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* ── Modal ── */
@@ -671,9 +764,17 @@ function render(animateId = null, animationType = null) {
     `).join('');
   });
 
-  // Spike column
+  // Spike column — newly spiked ticket always on top
   const stack = document.querySelector('.spike-stack[data-status="done"]');
-  const doneItems = tickets.filter(t => t.status === 'done');
+  let doneItems = tickets.filter(t => t.status === 'done');
+  // If we're animating a spike, move that ticket to the end so it renders on top
+  if (animateId && animationType === 'spike') {
+    const idx = doneItems.findIndex(t => t.id === animateId);
+    if (idx > -1) {
+      const [item] = doneItems.splice(idx, 1);
+      doneItems.push(item);
+    }
+  }
   stack.innerHTML = doneItems.map(t => `
     <div class="spiked-ticket ${t.id === animateId && animationType === 'spike' ? 'spike-enter' : ''}"
          data-id="${t.id}">
